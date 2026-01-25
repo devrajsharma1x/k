@@ -48,25 +48,32 @@ button:hover {
     align-items: center;
 }
 .slideshow {
-    width: 350px;
-    height: 350px;
+    width: 90%;
+    max-width: 360px;
+    aspect-ratio: 1 / 1;      /* forces perfect square */
     border: 5px solid white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
     position: relative;
-    margin-top: 20px;
+    margin: 20px auto;
+    background: #fff;
 }
+
 .slide {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;       
+    object-position: center;
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity 1s ease-in-out;
 }
+
 .slide.active {
     opacity: 1;
 }
+
 </style>
 </head>
 
@@ -166,4 +173,5 @@ function startSlideshow() {
 
 </body>
 </html>
+
 
