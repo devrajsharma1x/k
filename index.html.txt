@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Khushi Ji 💗</title>
+
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body {
+    background: #FFB6C1;
+    font-family: 'Comic Sans MS', cursive;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+}
+h1 {
+    color: #800080;
+    min-height: 80px;
+}
+button {
+    background: #800080;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    margin: 10px;
+    cursor: pointer;
+    position: relative;
+}
+button:hover {
+    background: #a020f0;
+}
+#page2 {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+.slideshow {
+    width: 350px;
+    height: 350px;
+    border: 5px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+}
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s;
+}
+.slide.active {
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- PAGE 1 -->
+<div id="page1">
+    <h1 id="typing"></h1>
+    <p style="font-size:90px;">🙁</p>
+    <button onclick="accept()">issok</button>
+    <button id="runaway">not ok</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2">
+    <h1 id="typing2"></h1>
+    <div class="slideshow">
+        <img src="img1.jpg" class="slide active">
+        <img src="img2.jpg" class="slide">
+        <img src="img3.jpg" class="slide">
+        <img src="img4.jpg" class="slide">
+        <img src="img5.jpg" class="slide">
+    </div>
+</div>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Typing Effect
+function typeText(el, text, speed = 50) {
+    let i = 0;
+    el.innerHTML = "";
+    const interval = setInterval(() => {
+        el.innerHTML += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(interval);
+    }, speed);
+}
+
+typeText(
+    document.getElementById("typing"),
+    "I'm really veryyyy sorryyyyy from the bottom of my heart Khushi ji 🥺"
+);
+
+// Runaway button 😈
+const runaway = document.getElementById("runaway");
+runaway.addEventListener("mouseover", () => {
+    runaway.style.left = Math.random() * 200 - 100 + "px";
+    runaway.style.top = Math.random() * 200 - 100 + "px";
+});
+
+// Accept
+function accept() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "flex";
+
+    typeText(
+        document.getElementById("typing2"),
+        "Thanks for forgiving, gurlyyypoppp 💕"
+    );
+
+    document.getElementById("music").play();
+
+    // Heart Confetti 💕
+    const end = Date.now() + 8000;
+    const interval = setInterval(() => {
+        if (Date.now() > end) return clearInterval(interval);
+        confetti({
+            particleCount: 60,
+            spread: 360,
+            shapes: ["heart"],
+            colors: ["#ff69b4", "#ff1493"],
+            origin: { x: Math.random(), y: Math.random() - 0.2 }
+        });
+    }, 300);
+
+    startSlideshow();
+}
+
+// Slideshow
+function startSlideshow() {
+    const slides = document.querySelectorAll(".slide");
+    let i = 0;
+    setInterval(() => {
+        slides[i].classList.remove("active");
+        i = (i + 1) % slides.length;
+        slides[i].classList.add("active");
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
